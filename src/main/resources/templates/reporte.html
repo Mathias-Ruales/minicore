@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados - Reporte de Tareas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Resultados del Reporte</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Empleado</th>
+                <th>Proyecto</th>
+                <th>Tarea</th>
+                <th>Inicio</th>
+                <th>Estimada</th>
+                <th>Días Retraso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tarea : ${tareas}">
+                <td th:text="${tarea.nombreCompletoEmpleado}"></td>
+                <td th:text="${tarea.nombreProyecto}"></td>
+                <td th:text="${tarea.descripcionTarea}"></td>
+                <td th:text="${tarea.fechaInicio}"></td>
+                <td th:text="${tarea.fechaEstimada}"></td>
+                <td th:text="${tarea.diasPasados}"></td>
+            </tr>
+            <tr th:if="${tareas.empty}">
+                <td colspan="6">No se encontraron tareas en progreso para el rango de fechas seleccionado.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a href="/" class="btn-volver">Volver al Inicio</a>
+    
+    <script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
